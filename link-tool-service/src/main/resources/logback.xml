@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>
+                %d{yyy-MM-dd HH:mm:ss.SSS} [%X{tid}][%thread] %-5level %logger{100}[%M] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="info_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/DeeplinkTool/info.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/DeeplinkTool/info/info.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>30</maxIndex>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100}[%M] - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="error_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/DeeplinkTool/error.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/DeeplinkTool/error/error.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>30</maxIndex>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100}[%M] - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="warn_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/DeeplinkTool/warn.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/DeeplinkTool/warn/warn.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>30</maxIndex>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100}[%M] - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="audit_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/logs/DeeplinkTool/audit.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/DeeplinkTool/audit/audit.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>30</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>50MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{100}[%M] - %msg%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="audit">
+        <appender-ref ref="audit_appender" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="info_appender" />
+        <appender-ref ref="warn_appender" />
+        <appender-ref ref="error_appender" />
+    </root>
+</configuration>

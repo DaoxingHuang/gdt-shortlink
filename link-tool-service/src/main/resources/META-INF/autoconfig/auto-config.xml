@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <group>
+        <property name="server.servlet.context-path" defaultValue="" description="" />
+        <property name="server.port" defaultValue="" description="" />
+
+        <property name="spring.profiles.active" defaultValue="" description="" />
+        <property name="spring.jackson.default-property-inclusion" defaultValue="" description="" />
+        <property name="spring.jackson.date-format" defaultValue="" description="" />
+        <property name="spring.jackson.locale" defaultValue="" description="" />
+        <property name="spring.jackson.time-zone" defaultValue="" description="" />
+
+        <property name="spring.datasource.url" defaultValue="" description="" />
+        <property name="spring.datasource.username" defaultValue="" description="" />
+        <property name="spring.datasource.password" defaultValue="" description="" />
+        <property name="spring.datasource.driver-class-name" defaultValue="" description="" />
+
+
+        <property name="pagehelper.helperDialect" defaultValue="" description="" />
+        <property name="pagehelper.reasonable" defaultValue="" description="" />
+        <property name="pagehelper.supportMethodsArguments" defaultValue="" description="" />
+        <property name="pagehelper.params" defaultValue="" description="" />
+
+
+        <property name="deeplink.utm.same-times" defaultValue="" description="" />
+        <property name="deeplink.gh.gooddoctor.domain" defaultValue="" description="" />
+        <property name="deeplink.gh.gooddoctor.redirectUrl" defaultValue="" description="" />
+        <property name="deeplink.gh.grab.oauthUrl" defaultValue="" description="" />
+        <property name="deeplink.gh.template" defaultValue="" description="" />
+        <property name="deeplink.saa.template" defaultValue="" description="" />
+
+        <property name="shortlink.deeplink.max-count" defaultValue="" description="" />
+        <property name="shortlink.domain" defaultValue="" description="" />
+
+        <property name="landingpage.modules" defaultValue="" description="" />
+        <property name="landingpage.saa.scheme" defaultValue="" description="" />
+
+        <property name="gdtOnelink.saa.template" defaultValue="" description="" />
+        <property name="facebook.utm.source" defaultValue="" description="" />
+        <property name="facebook.default.onelink.pid" defaultValue="" description="" />
+    </group>
+
+    <script>
+        <!-- 应用配置文件 -->
+        <generate template="config.properties.vm" destfile="application.yml" charset="UTF-8" />
+    </script>
+
+</config>

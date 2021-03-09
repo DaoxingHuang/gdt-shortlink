@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdtc.deeplink.manager.dao.ShortLinkMapper">
+  <resultMap id="BaseResultMap" type="com.gdtc.deeplink.manager.model.ShortLink">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="EXPIRED_TIME" jdbcType="TIMESTAMP" property="expiredTime" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+    <result column="LINK" jdbcType="VARCHAR" property="link" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, code, expired_time, name, link_type, link, status, create_time, update_time, creator, editor
+  </sql>
+
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from short_link
+    where code = #{code, jdbcType=VARCHAR}
+
+  </select>
+</mapper>

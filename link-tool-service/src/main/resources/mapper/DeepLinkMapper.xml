@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdtc.deeplink.manager.dao.DeepLinkMapper">
+  <resultMap id="BaseResultMap" type="com.gdtc.deeplink.manager.model.DeepLink">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="UTM_SOURCE" jdbcType="VARCHAR" property="utmSource" />
+    <result column="UTM_MEDIUM" jdbcType="VARCHAR" property="utmMedium" />
+    <result column="UTM_CAMPAIGN" jdbcType="VARCHAR" property="utmCampaign" />
+    <result column="UTM_CONTENT" jdbcType="VARCHAR" property="utmContent" />
+    <result column="LANDING_PAGE_ID" jdbcType="INTEGER" property="landingPageId" />
+    <result column="LADING_PAGE_PATH" jdbcType="VARCHAR" property="ladingPagePath" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="LINK" jdbcType="VARCHAR" property="link" />
+    <result column="PLATFORM" jdbcType="OTHER" property="platform" />
+    <result column="EXPIRED_TIME" jdbcType="TIMESTAMP" property="expiredTime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, utm_source, utm_medium, utm_campaign, utm_content, landing_page_id, landing_page_path, name, link, platform, expired_time, status, create_time, update_time, creator, editor
+  </sql>
+
+
+  <select id="countByLandingPage" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from deep_link where landing_page_id = #{landingPageId, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByLandingPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deep_link
+    where landing_page_id = #{landingPageId, jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUtm" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deep_link
+    where utm_source = #{source, jdbcType=VARCHAR}
+    and utm_medium = #{medium, jdbcType=VARCHAR}
+    and utm_campaign = #{campaign, jdbcType=VARCHAR}
+    and utm_content = #{content, jdbcType=VARCHAR}
+  </select>
+
+  <select id="countByUtm" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from deep_link
+    where utm_source = #{source, jdbcType=VARCHAR}
+    and utm_medium = #{medium, jdbcType=VARCHAR}
+    and utm_campaign = #{campaign, jdbcType=VARCHAR}
+    and utm_content = #{content, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPlatform" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deep_link
+    where platform = #{platform, jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectWithoutRelation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from deep_link
+    where id not in (select original_id from short_link_relation where link_type='deeplink')
+    and platform = 'SAA'
+    and status != 'OFF'
+  </select>
+</mapper>

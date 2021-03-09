@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdtc.deeplink.manager.dao.LandingPageMapper">
+  <resultMap id="BaseResultMap" type="com.gdtc.deeplink.manager.model.LandingPage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MODULE" jdbcType="VARCHAR" property="module" />
+    <result column="SCHEME_NAME" jdbcType="VARCHAR" property="schemeName" />
+    <result column="PATH_TEMPLATE" jdbcType="VARCHAR" property="pathTemplate" />
+    <result column="IS_NATIVE" jdbcType="TINYINT" property="isNative" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PLATFORM" jdbcType="OTHER" property="platform" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="EDITOR" jdbcType="VARCHAR" property="editor" />
+  </resultMap>
+
+  <select id="selectByPlatform" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from landing_page
+    where platform = #{platform, jdbcType=VARCHAR}
+  </select>
+</mapper>

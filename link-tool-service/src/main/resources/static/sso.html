@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="middle-box text-center animated fadeInDown">
+        <div style="text-align:center">
+            <div style="text-align:center">
+                <h2 class="text-danger">SSO Login</h2>
+            </div>
+            <h3 style="text-align:center">please login first</h3>
+                auto jump
+            <span style="text-align: center">
+                <a id="sso_href_fun" href="javascript:void(0)"><strong>login</strong></a>
+            </span>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $.ajax({
+            url: 'http://sso.gdtidtool.com/auth/auth_sso_token.js',
+            type: 'get',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log('fail!');
+            }
+        });
+
+        sso_href_url="http://sso.gdtidtool.com/auth/login?redirect_url=";
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        var redirect_url = getUrlParam('redirect_url');
+        if (redirect_url == null) {
+            redirect_url = "/"
+        }
+
+        var set_cookie = function(data) {
+            document.cookie = 'pajk_sso_token=' + data;
+            location.href=redirect_url
+        };
+
+        var btn = document.getElementById('sso_href_fun');
+        function toSSO() {
+            location.href=sso_href_url+redirect_url;
+        }
+        btn.onclick=toSSO();
+    </script>
+    <script>
+
+    </script>
+
+<!--    <script crossorigin src="http://sso.gdtidtool.com/auth/auth_sso_token.js"></script>-->
+</body>
+
+</html>

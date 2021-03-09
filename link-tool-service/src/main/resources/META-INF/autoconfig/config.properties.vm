@@ -1,0 +1,63 @@
+app:
+  name: DeeplinkTool
+
+
+server:
+  servlet:
+    context-path: ${server.servlet.context-path}
+  port: ${server.port}
+
+spring:
+  profiles:
+    active: ${spring.profiles.active}
+  jackson:
+    default-property-inclusion: ${spring.jackson.default-property-inclusion}
+    date-format: ${spring.jackson.date-format}
+    locale: ${spring.jackson.locale}
+    time-zone: ${spring.jackson.time-zone}
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    driver-class-name: ${spring.datasource.driver-class-name}
+
+pagehelper:
+  helperDialect: ${pagehelper.helperDialect}
+  reasonable: ${pagehelper.reasonable}
+  supportMethodsArguments: ${pagehelper.supportMethodsArguments}
+  params: ${pagehelper.params}
+
+
+deeplink:
+  utm:
+    same-times: ${deeplink.utm.same-times}
+  gh:
+    gooddoctor:
+      domain: ${deeplink.gh.gooddoctor.domain}
+      redirectUrl: ${deeplink.gh.gooddoctor.redirectUrl}
+    grab:
+      oauthUrl: ${deeplink.gh.grab.oauthUrl}
+    template: ${deeplink.gh.template}
+  saa:
+    template: ${deeplink.saa.template}
+
+gdtOnelink:
+  saa:
+    template: ${gdtOnelink.saa.template}
+
+shortlink:
+  deeplink:
+    max-count: ${shortlink.deeplink.max-count}
+  domain: ${shortlink.domain}
+
+landingpage:
+  modules: ${landingpage.modules}
+  saa:
+    scheme: ${landingpage.saa.scheme}
+
+facebook:
+  utm:
+    source: ${facebook.utm.source}
+  default:
+    onelink:
+      pid: ${facebook.default.onelink.pid}

@@ -1,0 +1,64 @@
+app:
+  name: DeeplinkTool
+
+
+server:
+  servlet:
+    context-path: /deeplink-tool
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+    #spring.jackson.serialization.write_dates_as_timestamps=false
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://localhost:3306/deeplink?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: abc123_
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+deeplink:
+  utm:
+    same-times: 5
+  gh:
+    gooddoctor:
+      domain: https://www.gooddoctor.co.id
+      redirectUrl: https://www.gooddoctor.co.id/health-site/
+    grab:
+      oauthUrl: https://api.grab.com/grabid/v1/oauth2/grablet/config?client_id=699cc1833d044f07bc6593cd1ff67a6a
+    template: grab://open?screenType=CONSENT&webviewUrl={webUrl}%26redirect_url%3D{redirectUrl}%253FreturnUrl%253D{fullPath}
+  saa:
+    template: https://ulink.gooddoctor.co.id/plugin-share/?scheme={scheme}%3Fcontent%3D{content}
+
+gdtOnelink:
+  saa:
+    template: https://gooddoctor.onelink.me/Cmiw/?pid={pid}&c={c}&scheme={scheme}%3Fcontent%3D{content}
+
+shortlink:
+  deeplink:
+    max-count: 5
+  domain: https://localhost:8080/short_link
+
+landingpage:
+  modules: mall,consult,activity,mine
+  saa:
+    scheme: '[{"scheme": "global_show_tab_home", "isNative": true }, {"scheme": "global_show_tab_consult", "isNative": true }, {"scheme": "global_show_tab_healthMall", "isNative": true }, {"scheme": "global_show_tab_activity", "isNative": true }, {"scheme": "global_show_tab_mine", "isNative": true }, {"scheme": "global_h5_opennewpage", "isNative": false }]'
+
+facebook:
+  utm:
+    source: fb,facebook
+  default:
+    onelink:
+      pid: facebookfilter
